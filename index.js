@@ -1,7 +1,5 @@
 import express from "express"
-// import tripRouter from "./routes/trip.route.js"
-// import generateRouter from "./routes/generate.route.js"
-// import webhookRouter from "./routes/webhook.route.js"
+import postRouter from "./routes/post.route.js"
 import connectDB from "./lib/connectDB.js"
 // import cors from "cors"
 
@@ -13,7 +11,7 @@ const app = express()
 
 app.use(express.json());
 
-// app.use("/generate", generateRouter)
+app.use("/post", postRouter)
 
 // app.get("/protect", (req, res) => {
 //     const { userId } = req.auth;
@@ -25,16 +23,16 @@ app.use(express.json());
 
 // app.use("/trip", tripRouter)
 
-// app.use((error, req, res) => {
+app.use((error, req, res) => {
 
-//     res.status(error.status || 500)
+    res.status(error.status || 500)
 
-//     res.json({
-//         message: error.message || "Something went wrong!",
-//         status: error.status,
-//         stack: error.stack
-//     })
-// })
+    res.json({
+        message: error.message || "Something went wrong!",
+        status: error.status,
+        stack: error.stack
+    })
+})
 
 app.listen(3000, () => {
     connectDB()
