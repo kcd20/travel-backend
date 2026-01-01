@@ -1,16 +1,15 @@
 import express from "express"
 import postRouter from "./routes/post.route.js"
 import connectDB from "./lib/connectDB.js"
-// import cors from "cors"
+import cors from "cors"
 
 const app = express()
 
-// app.use(cors(process.env.CLIENT_URL));
+app.use(cors(process.env.CLIENT_URL));
 // app.use(clerkMiddleware());
 // app.use("/webhooks", webhookRouter);
 
 app.use(express.json());
-
 app.use("/post", postRouter)
 
 // app.get("/protect", (req, res) => {
@@ -20,8 +19,6 @@ app.use("/post", postRouter)
 //     }
 //     res.status(200).json("content");
 // })
-
-// app.use("/trip", tripRouter)
 
 app.use((error, req, res) => {
 

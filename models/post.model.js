@@ -2,11 +2,6 @@ import { Schema } from "mongoose";
 import mongoose from "mongoose";
 
 const postSchema = new Schema({
-  id: {
-    type: String,
-    required: true,
-    unique: true,
-  },
   createdOn: {
     type: String,
     required: true,
@@ -25,4 +20,4 @@ const postSchema = new Schema({
   },
 });
 
-export default mongoose.model("Post", postSchema);
+export default mongoose.model("posts", postSchema);
