@@ -1,5 +1,5 @@
 
-import post from "../models/post.model.js";
+import Post from "../models/post.model.js";
 import { randomUUID } from "crypto";
 
 // For the home page
