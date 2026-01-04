@@ -11,8 +11,18 @@ const postSchema = new Schema({
     required: true,
   },
   coverImage: {
-    type: String,
-    required: false,
+    url: {
+      type: String,
+      required: true,
+    },
+    publicId: {
+      type: String,
+      required: true,
+    },
+    fileName: {
+      type: String,
+      required: true,
+    },
   },
   description: {
     type: String,

@@ -1,6 +1,5 @@
 
 import Post from "../models/post.model.js";
-import { randomUUID } from "crypto";
 
 // For the home page
 export const getLatestPosts = async (req, res) => {
@@ -27,3 +26,29 @@ export const getAllPosts = async (req, res) => {
     res.status(500).json({ message: "Failed to fetch posts" });
   }
 };
+
+export const createNewPost = async (req, res) => {
+  try {
+    const { title, coverImage, description } = req.body;
+
+    if (!title || !description) {
+      return res.status(400).json({ message: "Title and description are required" });
+    }
+
+    const newPost = await Post.create({
+      createdOn: new Date().toISOString(),
+      title,
+      description,
+      coverImage: {
+        url: coverImage.url,
+        publicId: coverImage.publicId,
+        fileName: coverImage.fileName,
+      },
+    });
+
+    res.status(201).json({ message: "Post created successfully", post: newPost });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
